@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- Header aligned to top -->
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        style="@style/btnStyleSeagull"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Program"
+            android:textColor="#000"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <!-- Footer aligned to bottom -->
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FC0"
+        android:visibility="gone"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Fixed Footer"
+            android:textColor="#000"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <!-- Content below header and above footer -->
+
+    <RelativeLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header"
+        android:layout_marginTop="20dp"
+        android:gravity="center" >
+
+        <LinearLayout 
+		    android:orientation="vertical"
+		    android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <TableRow
+                android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	 android:gravity="center"
+            >
+                <Button
+                android:id="@+id/btnAddProgram"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="15dp"
+	            android:text="Add Program"
+	            style="@style/btnStyleSeagull"
+	            
+	            android:textSize="20sp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	 android:gravity="center"
+            >
+                <Button
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="15dp"
+	            style="@style/btnStyleSeagull"
+	            android:text="Edit Program"
+	            
+	            android:textSize="20sp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	 android:gravity="center"
+            >
+                <Button
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="15dp"
+	            style="@style/btnStyleSeagull"
+	            android:text="Delete Program"
+	            
+	            android:textSize="20sp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	 android:gravity="center"
+            >
+                <Button
+                android:id="@+id/btnBackHome"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="15dp"
+	            style="@style/btnStyleSeagull"
+	            android:text="Back to Home"
+	            
+	            android:textSize="20sp" />
+            </TableRow>    
+            </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

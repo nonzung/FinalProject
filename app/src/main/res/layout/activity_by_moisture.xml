@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- Header aligned to top -->
+
+    <RelativeLayout
+        android:id="@+id/header"
+        style="@style/btnStyleSeagull"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Moisture"
+            android:textColor="#000"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <!-- Footer aligned to bottom -->
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center" >
+
+                <TextView
+                    android:id="@+id/tvBack"
+                    style="@style/btnStyleSeagull"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Back"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center" >
+
+                <TextView
+                    android:id="@+id/tvAdd"
+                    style="@style/btnStyleSeagull"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Add"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+            </TableRow>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Content below header and above footer -->
+
+    <RelativeLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header"
+        android:gravity="center" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:hint="Name"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:hint="Max Moisture"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:hint="Min Moisture"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="#A4A4A4"
+                    android:gravity="center"
+                    android:text="Select Swicth"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:gravity="center" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="#000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="#000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="#000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="4"
+                    android:textColor="#000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textColor="#000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="6"
+                    android:textColor="#000"
+                    android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+
+                    <RadioButton
+                        android:id="@+id/radioButton1"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableBottom="@android:drawable/btn_radio"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="1" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableBottom="@android:drawable/btn_radio"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:text="2" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton3"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableBottom="@android:drawable/btn_radio"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:text="3" />
+                    
+                    <RadioButton
+                        android:id="@+id/radioButton4"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableBottom="@android:drawable/btn_radio"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:text="4" />
+                    
+                    <RadioButton
+                        android:id="@+id/radioButton5"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableBottom="@android:drawable/btn_radio"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:text="5" />
+                    
+                    <RadioButton
+                        android:id="@+id/radioButton6"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableBottom="@android:drawable/btn_radio"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:text="6" />
+                
+            </TableRow>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
