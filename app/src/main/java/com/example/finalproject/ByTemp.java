@@ -2,10 +2,13 @@ package com.example.finalproject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -13,14 +16,26 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class ByTemp extends Activity {
 	RadioButton R1, R2, R3, R4, R5, R6;
 	TextView tvBack, tvAdd;
 	EditText etName,etMax,etMin;
+    SharedPreferences pref;
+    SharedPreferences.Editor prefEditor;
+    int posEdit;
+    public static ArrayList<HashMap<String, String>> collection,collections;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_by_temp);
+        pref = getApplicationContext().getSharedPreferences("TestHashMap", 0);
+        prefEditor = pref.edit();
+        final Bundle extras = getIntent().getExtras();
+
 
 		R1 = (RadioButton) findViewById(R.id.radioButton1);
 		R1.setOnClickListener(new OnClickListener() {
@@ -157,7 +172,8 @@ public class ByTemp extends Activity {
 		etName = (EditText)findViewById(R.id.etName);
 		etMax = (EditText)findViewById(R.id.etMaxTemp);
 		etMin = (EditText)findViewById(R.id.etMinTemp);
-		
+
+
 		tvBack = (TextView) findViewById(R.id.tvBack);
 		tvBack.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -168,25 +184,123 @@ public class ByTemp extends Activity {
 		});
 		tvAdd = (TextView) findViewById(R.id.tvAdd);
 		
-		MainActivity.ListProgram = new ArrayList<HashMap<String,String>>();
+		//MainActivity.ListProgram = new ArrayList<HashMap<String,String>>();
 		tvAdd.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				// Do stuff here
-				//Intent i = new Intent(ByTemp.this, MainActivity.class);
-				//startActivity(i);
-				//MainActivity.ListProgram = new ArrayList<HashMap<String,String>>();
-				HashMap<String,String> Listpro;
-				Listpro = new HashMap<String,String>();
-				
-				Listpro.put("NamePro", etName.getText().toString());
-				Listpro.put("MaxTemp", etMax.getText().toString());
-				Listpro.put("MinTemp", etMin.getText().toString());
-				
-				MainActivity.ListProgram.add(Listpro);
-				
+                if(extras == null) {
+                    collection = new ArrayList<HashMap<String, String>>();
+                    String storedCollection = pref.getString("Secret", null);
+                    try {
+                        JSONArray array = new JSONArray(storedCollection);
+                        HashMap<String, String> item = null;
+                        for (int i = 0; i < array.length(); i++) {
+                            String obj = array.get(i).toString();
+                            JSONObject ary = new JSONObject(obj);
+                            Iterator<String> it = ary.keys();
+                            item = new HashMap<String, String>();
+                            while (it.hasNext()) {
+                                String key = it.next();
+                                item.put(key, (String) ary.get(key));
+                            }
+                            collection.add(item);
+                        }
+                    } catch (Exception e) {
+                        Log.e("Restore", "while parsing", e);
+                    }
+                    String sw;
+                    if(R1.isChecked() == true){
+                        sw = "1";
+                    }else{
+                        sw ="0";
+                    }
+                    if(R2.isChecked() == true){
+                        sw = sw+""+1;
+                    }else{
+                        sw = sw+""+0;
+                    }
+                    if(R3.isChecked() == true){
+                        sw = sw+""+1;
+                    }else{
+                        sw = sw+""+0;
+                    }
+                    if(R4.isChecked() == true){
+                        sw = sw+""+1;
+                    }else{
+                        sw = sw+""+0;
+                    }
+                    if(R5.isChecked() == true){
+                        sw = sw+""+1;
+                    }else{
+                        sw = sw+""+0;
+                    }
+                    if(R6.isChecked() == true){
+                        sw = sw+""+1;
+                    }else{
+                        sw = sw+""+0;
+                    }
+                    HashMap<String, String> Listpro;
+                    Listpro = new HashMap<String, String>();
+                    Listpro.put("ProType", "ByTemp");
+                    Listpro.put("NamePro", etName.getText().toString());
+                    Listpro.put("MaxTemp", etMax.getText().toString());
+                    Listpro.put("MinTemp", etMin.getText().toString());
+                    Listpro.put("Switch", sw);
+
+                    //MainActivity.ListProgram.add(Listpro);
+                    collection.add(Listpro);
+                    JSONArray result = new JSONArray(collection);
+                    prefEditor.putString("Secret", result.toString());
+                    prefEditor.commit();
+                    finish();
+                }else{
+                    /*
+                    collection = new ArrayList<HashMap<String, String>>();
+                    String storedCollection = pref.getString("Secret", null);
+                    try {
+                        JSONArray array = new JSONArray(storedCollection);
+                        HashMap<String, String> item = null;
+                        for (int i = 0; i < array.length(); i++) {
+                            String obj = array.get(i).toString();
+                            JSONObject ary = new JSONObject(obj);
+                            Iterator<String> it = ary.keys();
+                            item = new HashMap<String, String>();
+                            while (it.hasNext()) {
+                                String key = it.next();
+                                item.put(key, (String) ary.get(key));
+                            }
+                            collection.add(item);
+                        }
+                    } catch (Exception e) {
+                        Log.e("Restore", "while parsing", e);
+                    }
+                    */
+                   // HashMap<String, String> Listpro;
+                    //Listpro = new HashMap<String, String>();
+
+                    OnOffProgram.collections.get(posEdit).put("NamePro", etName.getText().toString());
+                    OnOffProgram.collections.get(posEdit).put("MaxTemp", etMax.getText().toString());
+                    OnOffProgram.collections.get(posEdit).put("MinTemp", etMin.getText().toString());
+
+                    //MainActivity.ListProgram.add(Listpro);
+                    //collection.add(Listpro);
+                    //JSONArray result = new JSONArray(collection);
+                    //prefEditor.putString("Secret", result.toString());
+                    //prefEditor.commit();
+                    Intent in = new Intent();
+                    in.putExtra("PosEdit", -1);
+                    setResult(RESULT_OK, in);
+                    finish();
+                }
 			}
 		});
-
+        if(extras != null) {
+            posEdit = extras.getInt("posEdit");
+            etName.setText(extras.getString("NamePro"));
+            etMax.setText(extras.getString("MaxTemp"));
+            etMin.setText(extras.getString("MinTemp"));
+            tvAdd.setText("Edit");
+        }
 	}
 
 }

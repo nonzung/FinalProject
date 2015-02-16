@@ -6,7 +6,7 @@ android {
     compileOptions.encoding = 'x-windows-874'
     defaultConfig {
         applicationId "com.example.finalproject"
-        minSdkVersion 8
+        minSdkVersion 14
         targetSdkVersion 21
     }
 

@@ -1301,6 +1301,7 @@ containing a value of this type.
         public static final int abc_textfield_search_material=0x7f020032;
         public static final int custom_btn_seagull=0x7f020033;
         public static final int ic_launcher=0x7f020034;
+        public static final int image_bg=0x7f020035;
     }
     public static final class id {
         public static final int action_bar=0x7f080031;
@@ -1316,7 +1317,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f08002e;
         public static final int action_mode_bar_stub=0x7f08002d;
         public static final int action_mode_close_button=0x7f080020;
-        public static final int action_settings=0x7f08005a;
+        public static final int action_settings=0x7f08005e;
         public static final int activity_chooser_view_content=0x7f080021;
         public static final int always=0x7f080016;
         public static final int beginning=0x7f080013;
@@ -1354,6 +1355,7 @@ containing a value of this type.
         public static final int listMode=0x7f080009;
         public static final int list_item=0x7f080025;
         public static final int middle=0x7f080015;
+        public static final int mySwitch=0x7f080059;
         public static final int never=0x7f080019;
         public static final int none=0x7f08000e;
         public static final int normal=0x7f08000a;
@@ -1383,13 +1385,16 @@ containing a value of this type.
         public static final int split_action_bar=0x7f080007;
         public static final int submit_area=0x7f08003c;
         public static final int tabMode=0x7f08000b;
-        public static final int textView1=0x7f080057;
-        public static final int textView2=0x7f080058;
-        public static final int textView3=0x7f080059;
+        public static final int textView1=0x7f08005a;
+        public static final int textView2=0x7f08005b;
+        public static final int textView3=0x7f08005c;
+        public static final int textView4=0x7f08005d;
+        public static final int thumbnail=0x7f080057;
         public static final int title=0x7f080027;
         public static final int tvAdd=0x7f080046;
         public static final int tvBack=0x7f080041;
         public static final int tvHome=0x7f080042;
+        public static final int tv_type=0x7f080058;
         public static final int up=0x7f080008;
         public static final int useLogo=0x7f080012;
         public static final int withText=0x7f08001a;

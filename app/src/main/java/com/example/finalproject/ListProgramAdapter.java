@@ -9,7 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ListProgramAdapter extends BaseAdapter{
 	 	private Context context;
@@ -57,6 +60,9 @@ public class ListProgramAdapter extends BaseAdapter{
 				holder.tvName = (TextView)convertView.findViewById(R.id.textView1);
 				holder.tvMax = (TextView)convertView.findViewById(R.id.textView2);
 				holder.tvMin = (TextView)convertView.findViewById(R.id.textView3);
+                holder.tvSw = (TextView)convertView.findViewById(R.id.textView4);
+                holder.tvType = (TextView)convertView.findViewById(R.id.tv_type);
+                holder.sw = (Switch)convertView.findViewById(R.id.mySwitch);
 				convertView.setTag(holder);
 				
 			} else {
@@ -67,6 +73,31 @@ public class ListProgramAdapter extends BaseAdapter{
 			holder.tvName.setText(listProgram.get(position).get("NamePro").toString());
 			holder.tvMax.setText(listProgram.get(position).get("MaxTemp").toString());
 			holder.tvMin.setText(listProgram.get(position).get("MinTemp").toString());
+            try {
+                holder.tvSw.setText(listProgram.get(position).get("Switch").toString());
+            }catch (Exception e){
+
+            }
+            try {
+                holder.tvType.setText(listProgram.get(position).get("ProType").toString());
+            }catch (Exception e){
+
+            }
+            holder.sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked){
+                        Toast.makeText(context.getApplicationContext(),
+                                "ON "+position,
+                                Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(context.getApplicationContext(),
+                                "OFF "+position,
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
 	        return convertView;
 				
 		}
@@ -75,5 +106,8 @@ public class ListProgramAdapter extends BaseAdapter{
 			TextView tvName;
 			TextView tvMax;
 			TextView tvMin;
+            TextView tvSw;
+            TextView tvType;
+            Switch sw;
 		}
 }
