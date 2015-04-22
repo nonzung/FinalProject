@@ -10,5 +10,8 @@
     <string name="title_activity_by_temp">ByTemp</string>
     <string name="title_activity_by_moisture">ByMoisture</string>
     <string name="title_activity_on_off_program">OnOffProgram</string>
+    <string name="title_activity_on_off_time">OnOffTime</string>
+    <string name="title_activity_add_time">AddTime</string>
+    <string name="title_activity_manual">Manual</string>
 
 </resources>

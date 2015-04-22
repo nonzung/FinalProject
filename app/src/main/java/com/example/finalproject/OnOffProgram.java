@@ -11,6 +11,7 @@ import android.util.Log;
 //import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 //import android.widget.Toast;
@@ -27,13 +28,22 @@ public class OnOffProgram extends Activity {
 	ListView listview;
 	ListProgramAdapter adapter;
     public static ArrayList<HashMap<String, String>> collection,collections;
+    private Button btnDate;
     //SharedPreferences pref;
     //SharedPreferences.Editor prefEditor;
-	@Override
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_on_off_program);
 		listview = (ListView)findViewById(R.id.list);
+
         //pref = getApplicationContext().getSharedPreferences("TestHashMap", 0);
         //prefEditor = pref.edit();
 		/*if(MainActivity.ListProgram.size()>0){
@@ -52,7 +62,7 @@ public class OnOffProgram extends Activity {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(OnOffProgram.this);
 
                 // set title
-                alertDialogBuilder.setTitle("·°È‰¢À√◊Õ≈∫");
+                alertDialogBuilder.setTitle("·°È‰¢");
 
                 // set dialog message
                 alertDialogBuilder
@@ -66,24 +76,20 @@ public class OnOffProgram extends Activity {
                                 in.putExtra("NamePro", collections.get(position).get("NamePro"));
                                 in.putExtra("MaxTemp",collections.get(position).get("MaxTemp"));
                                 in.putExtra("MinTemp",collections.get(position).get("MinTemp"));
+                                in.putExtra("MaxMois",collections.get(position).get("MaxMois"));
+                                in.putExtra("MinMois",collections.get(position).get("MinMois"));
                                 //in.putExtra("Sex",collections.get(position).get("Sex"));
                                 startActivityForResult(in,202);
                             }
-                        })
-                        .setNegativeButton("≈∫",new DialogInterface.OnClickListener() {
+                        });
+                       /* .setNegativeButton("Time",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 // if this button is clicked, just close
                                 // the dialog box and do nothing
                                 //dialog.cancel();
-                                collections.remove(position);
-                                SharedPreferences pref = getApplicationContext().getSharedPreferences("TestHashMap", 0);
-                                SharedPreferences.Editor prefEditor = pref.edit();
-                                JSONArray result= new JSONArray(collections);
-                                prefEditor.putString("Secret", result.toString());
-                                prefEditor.commit();
-                                adapter.notifyDataSetChanged();
+
                             }
-                        });
+                        });*/
 
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
@@ -95,6 +101,7 @@ public class OnOffProgram extends Activity {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("TestHashMap", 0);
         //SharedPreferences.Editor prefEditor = pref.edit();
         collections = new ArrayList<HashMap<String, String>>();
+        //Read Data Switch From SharePreferance
         try {
             String storedCollection = pref.getString("Secret", null);
             JSONArray array = new JSONArray(storedCollection);

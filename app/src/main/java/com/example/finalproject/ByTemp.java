@@ -23,7 +23,8 @@ import org.json.JSONObject;
 public class ByTemp extends Activity {
 	RadioButton R1, R2, R3, R4, R5, R6;
 	TextView tvBack, tvAdd;
-	EditText etName,etMax,etMin;
+	EditText etTempMax,etTempMin,etMoisMax,etMoisMin;
+    TextView etName;
     SharedPreferences pref;
     SharedPreferences.Editor prefEditor;
     int posEdit;
@@ -36,7 +37,7 @@ public class ByTemp extends Activity {
         prefEditor = pref.edit();
         final Bundle extras = getIntent().getExtras();
 
-
+        /*
 		R1 = (RadioButton) findViewById(R.id.radioButton1);
 		R1.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -169,16 +170,19 @@ public class ByTemp extends Activity {
 				// Toast.LENGTH_SHORT).show();
 			}
 		});
-		etName = (EditText)findViewById(R.id.etName);
-		etMax = (EditText)findViewById(R.id.etMaxTemp);
-		etMin = (EditText)findViewById(R.id.etMinTemp);
+		*/
+		etName = (TextView)findViewById(R.id.etName);
+        etTempMax = (EditText)findViewById(R.id.etMaxTemp);
+		etTempMin = (EditText)findViewById(R.id.etMinTemp);
+        etMoisMax = (EditText)findViewById(R.id.etMaxMois);
+        etMoisMin = (EditText)findViewById(R.id.etMinMois);
 
 
 		tvBack = (TextView) findViewById(R.id.tvBack);
 		tvBack.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				// Do stuff here
-				Intent i = new Intent(ByTemp.this, ControlSensor.class);
+				Intent i = new Intent(ByTemp.this, OnOffProgram.class);
 				startActivity(i);
 			}
 		});
@@ -208,6 +212,7 @@ public class ByTemp extends Activity {
                     } catch (Exception e) {
                         Log.e("Restore", "while parsing", e);
                     }
+                    /*
                     String sw;
                     if(R1.isChecked() == true){
                         sw = "1";
@@ -239,13 +244,15 @@ public class ByTemp extends Activity {
                     }else{
                         sw = sw+""+0;
                     }
+                    */
                     HashMap<String, String> Listpro;
                     Listpro = new HashMap<String, String>();
-                    Listpro.put("ProType", "ByTemp");
+                    //Listpro.put("ProType", "ByTemp");
                     Listpro.put("NamePro", etName.getText().toString());
-                    Listpro.put("MaxTemp", etMax.getText().toString());
-                    Listpro.put("MinTemp", etMin.getText().toString());
-                    Listpro.put("Switch", sw);
+                    Listpro.put("MaxTemp", etTempMax.getText().toString());
+                    Listpro.put("MinTemp", etTempMin.getText().toString());
+                    Listpro.put("MaxMois", etMoisMax.getText().toString());
+                    Listpro.put("MinMois", etMoisMin.getText().toString());
 
                     //MainActivity.ListProgram.add(Listpro);
                     collection.add(Listpro);
@@ -279,8 +286,11 @@ public class ByTemp extends Activity {
                     //Listpro = new HashMap<String, String>();
 
                     OnOffProgram.collections.get(posEdit).put("NamePro", etName.getText().toString());
-                    OnOffProgram.collections.get(posEdit).put("MaxTemp", etMax.getText().toString());
-                    OnOffProgram.collections.get(posEdit).put("MinTemp", etMin.getText().toString());
+                    OnOffProgram.collections.get(posEdit).put("MaxTemp", etTempMax.getText().toString());
+                    OnOffProgram.collections.get(posEdit).put("MinTemp", etTempMin.getText().toString());
+                    OnOffProgram.collections.get(posEdit).put("MaxMois", etMoisMax.getText().toString());
+                    OnOffProgram.collections.get(posEdit).put("MinMois", etMoisMin.getText().toString());
+
 
                     //MainActivity.ListProgram.add(Listpro);
                     //collection.add(Listpro);
@@ -297,8 +307,10 @@ public class ByTemp extends Activity {
         if(extras != null) {
             posEdit = extras.getInt("posEdit");
             etName.setText(extras.getString("NamePro"));
-            etMax.setText(extras.getString("MaxTemp"));
-            etMin.setText(extras.getString("MinTemp"));
+            etTempMax.setText(extras.getString("MaxTemp"));
+            etTempMin.setText(extras.getString("MinTemp"));
+            etMoisMax.setText(extras.getString("MaxMois"));
+            etMoisMin.setText(extras.getString("MinMois"));
             tvAdd.setText("Edit");
         }
 	}

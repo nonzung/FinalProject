@@ -74,12 +74,14 @@
         android:layout_height="fill_parent"
         android:layout_above="@id/footer"
         android:layout_below="@id/header"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:gravity="center" >
 		<LinearLayout 
 		    android:orientation="vertical"
 		    android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            >
+            <!--
         <TableRow
                 android:layout_width="fill_parent"
             	android:layout_height="wrap_content"
@@ -95,6 +97,7 @@
 	            
 	            android:textSize="20sp" />
             </TableRow>
+            -->
             <TableRow
                 android:layout_width="fill_parent"
             	android:layout_height="wrap_content"
@@ -112,10 +115,23 @@
             </TableRow>
             <TableRow
                 android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btnTimeList"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="DateTime Program"
+                    style="@style/btnStyleSeagull"
+                    android:textSize="20sp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
             	android:layout_height="wrap_content"
             	 android:gravity="center"
             >
                 <Button
+                android:id="@+id/btnManual"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:layout_margin="15dp"
@@ -130,6 +146,7 @@
             	 android:gravity="center"
             >
                 <Button
+                    android:id="@+id/btnSensor"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:layout_margin="15dp"

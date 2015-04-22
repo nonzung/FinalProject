@@ -81,7 +81,9 @@
         android:layout_above="@id/footer"
         android:layout_below="@id/header"
         android:gravity="center" >
-
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -92,13 +94,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="center" >
 
-                <EditText
+                <TextView
                     android:id="@+id/etName"
+                    android:gravity="center"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:hint="Name"
-                    android:textSize="20sp" />
+                    android:text="Sw"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    />
             </TableRow>
 
             <TableRow
@@ -111,7 +116,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:hint="Max Temp"
+                    android:hint="อุณหภูมิเปิด"
                     android:singleLine="true"
                     android:inputType="number"
                     android:textSize="20sp" />
@@ -129,10 +134,63 @@
                     android:layout_margin="10dp"
                     android:singleLine="true"
                     android:inputType="number"
-                    android:hint="Min Temp"
+                    android:hint="อุณหภูมิปิด"
+                    android:textSize="20sp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+
+                <EditText
+                    android:id="@+id/etMaxMois"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:hint="ความชื้นเปิด"
+                    android:singleLine="true"
+                    android:inputType="number"
                     android:textSize="20sp" />
             </TableRow>
 
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+
+                <EditText
+                    android:id="@+id/etMinMois"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:hint="ความชื้นปิด"
+                    android:textSize="20sp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/btnStyleSeagull"
+                android:visibility="gone"
+                android:gravity="center" >
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:text="Time"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    />
+            </TableRow>
+            <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+            </ListView>
+            <!--
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -288,7 +346,10 @@
                         android:text="6" />
                 
             </TableRow>
+            -->
+
         </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 
 </RelativeLayout>
