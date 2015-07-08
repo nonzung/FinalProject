@@ -1,19 +1,24 @@
 package com.example.finalproject;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.finalproject.Adapter.ListProgramDateTimeAdapter;
+import com.example.finalproject.Arduino.SendArdu;
+import com.example.finalproject.Arduino.SendToArdu;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -36,9 +41,9 @@ public class OnOffTime extends ActionBarActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(OnOffTime.this,OnOffProgram.class);
+                //Intent i = new Intent(OnOffTime.this,OnOffProgram.class);
                 finish();
-                startActivity(i);
+                //startActivity(i);
             }
         });
         listview = (ListView) findViewById(R.id.listTime);
@@ -106,6 +111,8 @@ public class OnOffTime extends ActionBarActivity {
         try {
             String storedCollection = pref.getString("Time", null);
             JSONArray array = new JSONArray(storedCollection);
+            //Toast.makeText(OnOffTime.this,array.toString(),
+            //        Toast.LENGTH_LONG).show();
             HashMap<String, String> item = null;
             for(int i =0; i<array.length(); i++){
                 String obj = array.get(i).toString();
@@ -114,7 +121,7 @@ public class OnOffTime extends ActionBarActivity {
                 item = new HashMap<String, String>();
                 while(it.hasNext()){
                     String key = it.next();
-                    item.put(key, (String)ary.get(key));
+                    item.put(key, (String)ary.get(key).toString());
                 }
                 collections.add(item);
             }
@@ -122,8 +129,13 @@ public class OnOffTime extends ActionBarActivity {
         } catch (Exception e) {
             Log.e("Restore", "while parsing", e);
         }
-        adapter = new ListProgramDateTimeAdapter(OnOffTime.this,collections);
-        listview.setAdapter(adapter);
+
+
+        if(collections.size() > 0 && MainActivity.CheckEnDis == false) {
+            Toast.makeText(OnOffTime.this, "Update Value Started....", Toast.LENGTH_SHORT).show();
+            new UpDateValue().execute();
+        }
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -154,7 +166,7 @@ public class OnOffTime extends ActionBarActivity {
                         item = new HashMap<String, String>();
                         while(it.hasNext()){
                             String key = it.next();
-                            item.put(key, (String)ary.get(key));
+                            item.put(key, (String)ary.get(key).toString());
                         }
                         collections.add(item);
                     }
@@ -171,8 +183,65 @@ public class OnOffTime extends ActionBarActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(this,OnOffProgram.class);
+        //Intent i = new Intent(this,OnOffProgram.class);
         finish();
-        startActivity(i);
+        //startActivity(i);
+    }
+    class UpDateValue extends AsyncTask<Void,Void,Void>{
+        ProgressDialog pd;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pd = new ProgressDialog(OnOffTime.this);
+            pd.setTitle("Updating..");
+            pd.setCancelable(true);
+            pd.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            for (int i = 0; i < collections.size(); i++) {
+                if (collections.get(i).get("State").equals("1")) {
+                    final int position = i;
+                    try {
+                        Thread.sleep(2000);
+                        String start = collections.get(position).get("Start").toString().substring(0, 2) + collections.get(position).get("Start").toString().substring(3, collections.get(position).get("Start").toString().length());
+                        String stop = collections.get(position).get("Stop").toString().substring(0, 2) + collections.get(position).get("Stop").toString().substring(3, collections.get(position).get("Stop").toString().length());
+                        String msgSend = "11" + start + stop +
+                                collections.get(position).get("Switch").toString() +
+                                collections.get(position).get("DayOfWeeks").toString() + position;
+                        SendToArdu.send(msgSend, "192.168.4.1", 8000, new SendToArdu.SendCallback() {
+                            public void onSuccess(String tag) {
+                                Toast.makeText(OnOffTime.this, "onSuccess", Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            public void onFailed(String tag) {
+                                Toast.makeText(OnOffTime.this, "onFailed", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }, "TAG");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            pd.dismiss();
+            try {
+                adapter = new ListProgramDateTimeAdapter(OnOffTime.this, collections);
+                listview.setAdapter(adapter);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
     }
 }

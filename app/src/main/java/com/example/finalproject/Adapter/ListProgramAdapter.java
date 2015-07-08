@@ -1,9 +1,8 @@
-package com.example.finalproject;
+package com.example.finalproject.Adapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
@@ -14,6 +13,9 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.finalproject.R;
+import com.example.finalproject.Arduino.SendArdu;
 
 import org.json.JSONArray;
 
@@ -68,7 +70,7 @@ public class ListProgramAdapter extends BaseAdapter{
                 holder.tvType = (TextView)convertView.findViewById(R.id.tv_type);
                 holder.sw = (Switch)convertView.findViewById(R.id.mySwitch);
 				convertView.setTag(holder);
-				
+
 			} else {
 				holder = (ListProHolder)convertView.getTag();
 				
@@ -81,6 +83,7 @@ public class ListProgramAdapter extends BaseAdapter{
             holder.tvMinMois.setText("ความชื้นปิด :"+listProgram.get(position).get("MinMois").toString());
             if(listProgram.get(position).get("State").toString().equals("1")){
                 holder.sw.setChecked(true);
+
 
             }
 
