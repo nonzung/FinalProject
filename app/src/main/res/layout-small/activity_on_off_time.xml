@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.finalproject.OnOffTime">
+
+    <ListView
+        android:id="@+id/listTime"
+        android:layout_height="fill_parent"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_above="@+id/tb1"
+        android:layout_width="match_parent">
+    </ListView>
+    <TableRow
+        android:id="@+id/tb1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/btnAddTime"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Add Time"
+            style="@style/btnStyleSeagull"
+            android:textSize="20sp" />
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Back"
+            style="@style/btnStyleSeagull"
+            android:textSize="20sp" />
+    </TableRow>
+
+</RelativeLayout>

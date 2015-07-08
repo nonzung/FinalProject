@@ -12,13 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         style="@style/btnStyleSeagull"
+        android:visibility="gone"
         android:gravity="center" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="Program"
+            android:text="HOME"
             android:textColor="#000"
             android:textSize="20sp" />
     </RelativeLayout>
@@ -33,14 +34,37 @@
         android:background="#FC0"
         android:visibility="gone"
         android:gravity="center" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="Fixed Footer"
-            android:textColor="#000"
-            android:textSize="20sp" />
+		<LinearLayout 
+		    android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TableRow
+                android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:layout_weight="1"
+            >
+                <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="5dp"
+	            android:text="Fixed Footer"
+	            android:textColor="#000"
+	            android:textSize="20sp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:layout_weight="1"
+            >
+                <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="5dp"
+	            android:text="Fixed Footer"
+	            android:textColor="#000"
+	            android:textSize="20sp" />
+            </TableRow>    
+       	</LinearLayout>
+        
     </RelativeLayout>
 
     <!-- Content below header and above footer -->
@@ -51,25 +75,69 @@
         android:layout_height="fill_parent"
         android:layout_above="@id/footer"
         android:layout_below="@id/header"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:gravity="center" >
-
-        <LinearLayout 
+		<LinearLayout 
 		    android:orientation="vertical"
 		    android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            >
+            <!--
         <TableRow
                 android:layout_width="fill_parent"
             	android:layout_height="wrap_content"
             	 android:gravity="center"
             >
                 <Button
-                android:id="@+id/btnAddProgram"
+                android:id="@+id/btnprogram"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:layout_margin="15dp"
-	            android:text="Add Program"
+	            android:text="Program"
 	            style="@style/btnStyleSeagull"
+	            
+	            android:textSize="20sp" />
+            </TableRow>
+            -->
+            <TableRow
+                android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	 android:gravity="center"
+            >
+                <Button
+                    android:id="@+id/btnOnOff"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="15dp"
+	            style="@style/btnStyleSeagull"
+	            android:text="On/Off Program"
+	            
+	            android:textSize="20sp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btnTimeList"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="DateTime Program"
+                    style="@style/btnStyleSeagull"
+                    android:textSize="20sp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	 android:gravity="center"
+            >
+                <Button
+                android:id="@+id/btnManual"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="15dp"
+	            style="@style/btnStyleSeagull"
+	            android:text="Manual"
 	            
 	            android:textSize="20sp" />
             </TableRow>
@@ -79,44 +147,24 @@
             	 android:gravity="center"
             >
                 <Button
+                    android:id="@+id/btnSensor"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:layout_margin="15dp"
 	            style="@style/btnStyleSeagull"
-	            android:text="Edit Program"
-	            
-	            android:textSize="20sp" />
-            </TableRow>
-            <TableRow
-                android:layout_width="fill_parent"
-            	android:layout_height="wrap_content"
-            	 android:gravity="center"
-            >
-                <Button
-	            android:layout_width="fill_parent"
-	            android:layout_height="wrap_content"
-	            android:layout_margin="15dp"
-	            style="@style/btnStyleSeagull"
-	            android:text="Delete Program"
-	            
-	            android:textSize="20sp" />
-            </TableRow>
-            <TableRow
-                android:layout_width="fill_parent"
-            	android:layout_height="wrap_content"
-            	 android:gravity="center"
-            >
-                <Button
-                android:id="@+id/btnBackHome"
-	            android:layout_width="fill_parent"
-	            android:layout_height="wrap_content"
-	            android:layout_margin="15dp"
-	            style="@style/btnStyleSeagull"
-	            android:text="Back to Home"
+	            android:text="Sensor"
 	            
 	            android:textSize="20sp" />
             </TableRow>    
             </LinearLayout>
     </RelativeLayout>
-
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="On/Off Wifi Check"
+        android:id="@+id/switch1"
+        android:layout_below="@+id/header"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:showText="true"/>
 </RelativeLayout>

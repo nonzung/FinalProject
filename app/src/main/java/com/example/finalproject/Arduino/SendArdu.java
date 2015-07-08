@@ -1,4 +1,4 @@
-package com.example.finalproject;
+package com.example.finalproject.Arduino;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.finalproject.R;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -42,11 +44,20 @@ public class SendArdu extends AsyncTask<String, Void, Void>{
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
             pd = new ProgressDialog(context);
             pd.setTitle("Sending..");
             pd.setMessage(massage);
             pd.setCancelable(true);
+            pd.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    pd.dismiss();
+                    //cancel(true);
+                }
+            });
             pd.show();
+
             pd.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialog) {
@@ -54,6 +65,7 @@ public class SendArdu extends AsyncTask<String, Void, Void>{
                     if(socket != null){
                         try {
                             socket.close();
+                            cancel(true);
                         } catch (IOException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
@@ -61,12 +73,15 @@ public class SendArdu extends AsyncTask<String, Void, Void>{
                     }
                 }
             });
+
         }
 
         @Override
         protected Void doInBackground(String... arg0) {
+
             try {
-                socket = null;
+                socket = new Socket();
+
                 InetAddress serverAddr = InetAddress.getByName(SERVER_IP);
 
                 socket = new Socket(serverAddr, SERVERPORT);
@@ -85,22 +100,22 @@ public class SendArdu extends AsyncTask<String, Void, Void>{
                     msg = null;
                     while ((charsRead = in.read(buffer)) != -1)
                     {
+                        if (isCancelled())
+                            break;
+                        else
+                        {
+                            // do your work here
+
                         String message = new String(buffer).substring(0, charsRead);
                         msg = message;
                         if(msg != null){
                             return null;
                         }
                         Log.e("In While", "msg :" + message);
+                        }
 
                     }
-                    /*
-                    while (! in .ready());
-                    msg = "";
 
-                    while ( in .ready()) {
-                        msg = msg + (char) in .read();
-                    }
-                    */
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
                     msg += "Send Error "+e.toString();
@@ -157,6 +172,13 @@ public class SendArdu extends AsyncTask<String, Void, Void>{
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
+                    try {
+                        socket.close();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
                 }
             });
             //dialog.

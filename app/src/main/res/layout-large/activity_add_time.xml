@@ -76,9 +76,7 @@
         android:layout_above="@id/footer"
         android:layout_below="@id/header"
         android:gravity="center">
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -518,7 +516,6 @@
 
 
         </LinearLayout>
-        </ScrollView>
-    </RelativeLayout>
 
+    </RelativeLayout>
 </RelativeLayout>
